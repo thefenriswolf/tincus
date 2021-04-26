@@ -1,0 +1,4 @@
+[https://github.com/brglng/libwav/blob/master/src/wav.c]
+[https://www.videoproc.com/resource/wav-file.htm]
+[https://onestepcode.com/read-wav-header/]
+[https://www.youtube.com/watch?v=M9ZwuIv3xz8]
