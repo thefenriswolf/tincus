@@ -6,7 +6,6 @@ pkgs.mkShell {
     pkgs.clang-tools
     pkgs.lld_13
     pkgs.lldb
-    pkgs.gnumake
     pkgs.ffmpeg-full
     pkgs.man
     pkgs.man-pages

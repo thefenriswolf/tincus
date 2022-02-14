@@ -46,7 +46,7 @@ function build_analyze(){
 
 function build_compile(){
     set -xe
-    $CC $CFLAGS $LDFLAGS -o tincus $SRC
+    $CC $CFLAGS $LD $LDFLAGS -o tincus $SRC
 }
 
 function build_play(){
