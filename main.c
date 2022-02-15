@@ -38,37 +38,10 @@ struct wav_header {
   byte Subchunk2ID[4] __attribute__((aligned(1)));
   uint32_t Subchunk2Size __attribute__((
       aligned(1))); // (NumSamples * NumChannels * BitsPerSample)/8
-  // DATA
+  // int16_t DATA
 };
 
-int main(int argc, char **argv) {
-  struct wav_header a = {.ChunkID[0] = ChunkID[0],
-                         .ChunkID[1] = ChunkID[1],
-                         .ChunkID[2] = ChunkID[2],
-                         .ChunkID[3] = ChunkID[3],
-                         .ChunkSize = sizeof(a) - 8,
-                         .Format[0] = Format[0],
-                         .Format[1] = Format[1],
-                         .Format[2] = Format[2],
-                         .Format[3] = Format[3],
-                         .Subchunk1ID[0] = Subchunk1ID[0],
-                         .Subchunk1ID[1] = Subchunk1ID[1],
-                         .Subchunk1ID[2] = Subchunk1ID[2],
-                         //.Subchunk1ID[3] = Subchunk1ID[3],
-                         .Subchunk1Size = Subchunk1Size,
-                         .AudioFormat = AudioFormat,
-                         .NumChannels = NumChannels,
-                         .SampleRate = SampleRate,
-                         .ByteRate = ByteRate,
-                         .BlockAlign = BlockAlign,
-                         .BitsPerSample = BitsPerSample,
-                         .Subchunk2ID[0] = Subchunk2ID[0],
-                         .Subchunk2ID[1] = Subchunk2ID[1],
-                         .Subchunk2ID[2] = Subchunk2ID[2],
-                         .Subchunk2ID[3] = Subchunk2ID[3],
-                         .Subchunk2Size = 0};
-
-  //////////size check//////////
+static void sizeCheck(struct wav_header a) {
   printf("wav header: %u bytes\t\texpected: 44\n", sizeof(a));
   printf("chunkid size: %u bytes\t\texpected: 4\toffset: %u\texpected: 0\n",
          sizeof(a.ChunkID), offsetof(struct wav_header, ChunkID));
@@ -103,8 +76,40 @@ int main(int argc, char **argv) {
   printf(
       "Subchunk2Size size: %u bytes\t\texpected: 4\toffset: %u\texpected: 40\n",
       sizeof(a.Subchunk2Size), offsetof(struct wav_header, Subchunk2Size));
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
 
+int main(int argc, char **argv) {
+  struct wav_header a = {.ChunkID[0] = ChunkID[0],
+                         .ChunkID[1] = ChunkID[1],
+                         .ChunkID[2] = ChunkID[2],
+                         .ChunkID[3] = ChunkID[3],
+                         .ChunkSize = sizeof(a) - 8,
+                         .Format[0] = Format[0],
+                         .Format[1] = Format[1],
+                         .Format[2] = Format[2],
+                         .Format[3] = Format[3],
+                         .Subchunk1ID[0] = Subchunk1ID[0],
+                         .Subchunk1ID[1] = Subchunk1ID[1],
+                         .Subchunk1ID[2] = Subchunk1ID[2],
+                         //.Subchunk1ID[3] = Subchunk1ID[3],
+                         .Subchunk1Size = Subchunk1Size,
+                         .AudioFormat = AudioFormat,
+                         .NumChannels = NumChannels,
+                         .SampleRate = SampleRate,
+                         .ByteRate = ByteRate,
+                         .BlockAlign = BlockAlign,
+                         .BitsPerSample = BitsPerSample,
+                         .Subchunk2ID[0] = Subchunk2ID[0],
+                         .Subchunk2ID[1] = Subchunk2ID[1],
+                         .Subchunk2ID[2] = Subchunk2ID[2],
+                         .Subchunk2ID[3] = Subchunk2ID[3],
+                         .Subchunk2Size = 0};
+  // sizeCheck(a);
+  int16_t i = 1;
+  while (i >= 1) {
+    ++i;
+  }
+  printf("max int16_t: %d\n", i);
   char *program = *argv++;
   char *filepath = *argv++;
   FILE *file = fopen(filepath, "wb");
