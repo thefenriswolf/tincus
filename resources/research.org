@@ -3,3 +3,5 @@
 [https://onestepcode.com/read-wav-header/]
 [https://www.youtube.com/watch?v=M9ZwuIv3xz8]
 [https://docs.fileformat.com/audio/wav/]
+[https://aneescraftsmanship.com/wav-file-format/]
+[https://wavefilegem.com/how_wave_files_work.html]
