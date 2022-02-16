@@ -5,9 +5,9 @@ LD="-fuse-ld=lld"
 SRC="main.c debug.c wavHandler.c"
 HEADERS="./headers/*.h"
 CFLAGS="-W -Wall -Wextra -pedantic -std=c18 -g3 -O2"
-EXTRAFLAGS="-fno-common -Wshadow -Wdouble-promotion -Wconversion -Wpadded"
+EXTRAFLAGS="-Wshadow -Wdouble-promotion -Wconversion -Wpadded"
 CLANGFLAGS="-Wdocumentation"
-LDFLAGS=""
+LDFLAGS="-lm"
 INFER="../plotplot/tools/infer-linux64-v1.1.0/bin/infer"
 
 function build_help() {
@@ -34,7 +34,7 @@ function build_help() {
 
 function build_clean(){
     set -xe
-    rm -rfv *.o a.out tincus *~ infer-out
+    rm -rfv *.o *.out tincus *~ infer-out
 }
 
 function build_tidy(){
@@ -44,7 +44,7 @@ function build_tidy(){
 
 function build_analyze(){
     set -xe
-    $INFER run --reactive --continue -- clang $SRC
+    $INFER run --reactive --continue -- clang $LDFLAGS $SRC -o inf.out
 }
 
 function build_compile(){
