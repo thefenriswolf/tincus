@@ -2,8 +2,11 @@
 
 CC="clang"
 LD="-fuse-ld=lld"
-SRC="*.c"
-CFLAGS="-Wall -Wextra -Wshadow -Weverything -pedantic -std=c18 -g -O3"
+SRC="main.c debug.c wavHandler.c"
+HEADERS="./headers/*.h"
+CFLAGS="-W -Wall -Wextra -pedantic -std=c18 -g3 -O2"
+EXTRAFLAGS="-fno-common -Wshadow -Wdouble-promotion -Wconversion -Wpadded"
+CLANGFLAGS="-Wdocumentation"
 LDFLAGS=""
 INFER="../plotplot/tools/infer-linux64-v1.1.0/bin/infer"
 
@@ -36,7 +39,7 @@ function build_clean(){
 
 function build_tidy(){
     set -xe
-    clang-tidy *.c *.h
+    clang-tidy $SRC $HEADERS
 }
 
 function build_analyze(){
@@ -46,7 +49,7 @@ function build_analyze(){
 
 function build_compile(){
     set -xe
-    $CC $CFLAGS $LD $LDFLAGS -o tincus $SRC
+    $CC $CFLAGS $CLANGFLAGS $EXTRAFLAGS $LD $LDFLAGS -o tincus $SRC
 }
 
 function build_play(){
