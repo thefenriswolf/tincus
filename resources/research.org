@@ -5,3 +5,7 @@
 [https://docs.fileformat.com/audio/wav/]
 [https://aneescraftsmanship.com/wav-file-format/]
 [https://wavefilegem.com/how_wave_files_work.html]
+
+* TODO: use mp3 instead of wave
+** I am sick of this format
+[http://www.multiweb.cz/twoinches/MP3inside.htm]

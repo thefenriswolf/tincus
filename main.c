@@ -71,8 +71,8 @@ int main(int argc, char **argv) {
 
   // sizeCheck(a);
 
-  uint32_t Duration = 2000;
-  long double amp = 30000.0;
+  uint32_t Duration = 1000;
+  long double amp = 300.0;
   long double Freq = 440.0;
   long double constant = 2.0 * PI * Freq;
   // int16_t sineWave[SampleRate * Duration];
@@ -90,12 +90,15 @@ int main(int argc, char **argv) {
   // TODO: this takes forever
   // TODO: too little amplitude
   // TODO: numbers too close together
-  for (size_t i = 0; i <= (2 * SampleRate * Duration); i++) {
+  for (size_t i = 0; i <= (SampleRate * Duration); i++) {
     int16_t commit = 0;
     long double temp = 0.0;
+    // 2PI = 0°
+    // completes 1 cycle in N number of samples (SampleRate)
+    // Amplification*sin(2*PI*Frequency*iterator/N)
     temp = amp * sinl(constant * ((long double)i) / ((long double)SampleRate));
     // printf("tmp: %f\n", temp);
-    commit = (int16_t)roundl(temp);
+    commit = (int16_t)roundl(temp * 32767.0);
     if (commit < -32768) {
       commit = -32767;
     }
